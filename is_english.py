@@ -26,7 +26,7 @@ def is_english(word: str) -> bool:
     return check(word)
 
 if __name__ == "__main__":
-    words = ['albatros', 'winner', 'success', 'erwrtwaf', 'albat']
+    words = ['albatross', 'run', 'winner', 'success', 'erwrtwaf', 'albat']
     for word in words:
         if is_english(word):
             print(f'English: {word}')
