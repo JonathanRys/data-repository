@@ -8,10 +8,16 @@ def get_data(file: str) -> dict:
     return trie
 
 def check(word: str, trie: dict=get_data(json_trie)) -> bool:
-    if not word:
-        return True
+    if len(word) == 1:
+        if trie.get(word):
+            if trie.get(word).get('EOW'):
+                return True
+        else:
+            return False
     if trie:
-        return check(word[1:], trie.get(word[:1]))
+        next_trie = trie.get(word[:1])
+        if next_trie:
+            return check(word[1:], next_trie)
     return False
 
 def is_english(word: str) -> bool:
@@ -20,7 +26,7 @@ def is_english(word: str) -> bool:
     return check(word)
 
 if __name__ == "__main__":
-    words = ['albatros', 'winner', 'success', 'erwrtwaf']
+    words = ['albatros', 'winner', 'success', 'erwrtwaf', 'albat']
     for word in words:
         if is_english(word):
             print(f'English: {word}')
